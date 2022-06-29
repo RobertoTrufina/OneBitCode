@@ -1,6 +1,8 @@
 import React from "react";
-import DescritonWithLink from '../shared/description-With-Link';
-import GrayImg from '../shared/gray-img/index';
+import { Link } from "react-router-dom";
+import DescritonWithLink from '../../shared/description-With-Link';
+import GrayImg from '../../shared/gray-img';
+
 
 const Planet = (props) => {
 
@@ -12,7 +14,7 @@ const Planet = (props) => {
 
     return (
         <div>
-            {title}
+            <Link to={`/planet/${props.id}`}>{title}</Link>
             < DescritonWithLink
                 description={props.description}
                 link={props.link}

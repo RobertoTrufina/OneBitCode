@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import DescritonWithLink from '../shared/description-With-Link';
 import GrayImg from '../shared/gray-img/index';
+import Form2 from './../planets/form/index';
 
 
 async function getPlanet(id) {
@@ -14,14 +15,18 @@ const Planet = () => {
     const [satellites, setSatellites] = useState([])
     const [planet, setPlanet] = useState({})
     let { id } = useParams()
+    let navigate = useNavigate();
 
     useEffect(() => {
         getPlanet(id).then(data => {
             setSatellites(data['satellites'])
             getPlanet(data['data'])
-
         })
     }, [])
+
+    const goToPLanet = () => {
+        navigate.push('/')
+    }
 
     const addSatellite = (new_satellite) => {
         setSatellites([...satellites, new_satellite])
@@ -54,6 +59,7 @@ const Planet = () => {
                 )}
             </ul>
             <hr />
+            <button type="button" onClick={goToPLanet}>Voltar a listagem</button>
         </div >
     )
 }
